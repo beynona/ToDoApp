@@ -18,7 +18,6 @@ namespace ToDoApp.Services
         {
             PATH = path;
         }
-
         //Загрузка данных после Json парса
         public BindingList<ToDoModels> LoadData()
         {

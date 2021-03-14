@@ -67,7 +67,7 @@ namespace ToDoApp
             }
             
         }
-
+    
         private void ToDoList_ListChanged(object sender, ListChangedEventArgs e)
         {
 

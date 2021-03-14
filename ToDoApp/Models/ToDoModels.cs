@@ -16,7 +16,7 @@ namespace ToDoApp.Models
         private string finishDate = DateTime.Now.ToString("dd.MM.yyyy");
         //Свойства
 
-
+        
         public bool IsDone
         {
             get { return isDone; }

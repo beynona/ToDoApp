@@ -9,7 +9,7 @@
         <ObjectDataProvider MethodName="GetValues" ObjectType="{x:Type sys:Enum}" x:Key="GetEnumValues">
             <ObjectDataProvider.MethodParameters>
                 <x:Type TypeName="local:CategoryEnum"/>
-                
+               
             </ObjectDataProvider.MethodParameters>
         </ObjectDataProvider>
     </Window.Resources>
