@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
@@ -18,11 +19,13 @@ using ToDoApp.Services;
 
 namespace ToDoApp
 {
+   
     /// <summary>
     /// Логика взаимодействия для MainWindow.xaml
     /// </summary>
     public partial class MainWindow : Window
     {
+
         //Пусть с exe
         private readonly string PATH = $"{Environment.CurrentDirectory}\\todoDataList.json";
 
@@ -33,12 +36,15 @@ namespace ToDoApp
         public MainWindow()
         {
             InitializeComponent();
+
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            fileIOService = new FileIOService(PATH);
+            
 
+            fileIOService = new FileIOService(PATH);
+            
             try
             {
                 ToDoList = fileIOService.LoadData();
@@ -50,13 +56,21 @@ namespace ToDoApp
             }
             
             dgToDo.ItemsSource = ToDoList;
-            ToDoList.ListChanged += ToDoList_ListChanged;
+            try
+            {
+                ToDoList.ListChanged += ToDoList_ListChanged;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                Close();
+            }
+            
         }
 
         private void ToDoList_ListChanged(object sender, ListChangedEventArgs e)
         {
-            if (e.ListChangedType == ListChangedType.ItemAdded || e.ListChangedType == ListChangedType.ItemDeleted || e.ListChangedType == ListChangedType.ItemChanged || e.ListChangedType == null)
-            {
+
                 try
                 {
                     fileIOService.SaveData(sender);
@@ -66,7 +80,12 @@ namespace ToDoApp
                     MessageBox.Show(ex.Message);
                     Close();
                 }
-            }
+
+        }
+
+        private void MenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
         }
     }
 }

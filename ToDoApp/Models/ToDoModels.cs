@@ -2,20 +2,21 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Globalization;
 
 namespace ToDoApp.Models
 {
     class ToDoModels : INotifyPropertyChanged
     {
         //Поля
-        public DateTime CreationData { get; set; } = DateTime.Now;
+        public string CreationData { get; set; } = DateTime.Now.ToString("f");
         private bool isDone;
         private string text;
-
+        private CategoryEnum category;
+        private string finishDate = DateTime.Now.ToString("dd.MM.yyyy");
         //Свойства
+
+
         public bool IsDone
         {
             get { return isDone; }
@@ -42,6 +43,33 @@ namespace ToDoApp.Models
                 OnPropertyChanged("Text");
             }
         }
+        public CategoryEnum Category
+        {
+            get { return category; }
+            set
+            {
+                if (category == value)
+                {
+                    return;
+                }
+                category = value;
+                OnPropertyChanged("Category");
+            }
+        }
+        public string FinishDate
+        {
+            get { return finishDate; }
+            set
+            {
+                if (finishDate == value)
+                {
+                    return;
+                }
+                finishDate = value;
+                OnPropertyChanged("FinishDate");
+            }
+        }
+
 
         //Событие изменения состояния файла
         public event PropertyChangedEventHandler PropertyChanged;
@@ -49,6 +77,7 @@ namespace ToDoApp.Models
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
+        
 
     }
 }
