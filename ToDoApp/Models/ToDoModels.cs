@@ -14,9 +14,8 @@ namespace ToDoApp.Models
         private string text;
         private CategoryEnum category;
         private string finishDate = DateTime.Now.ToString("dd.MM.yyyy");
+        private DateTime check;
         //Свойства
-
-        
         public bool IsDone
         {
             get { return isDone; }
@@ -61,12 +60,17 @@ namespace ToDoApp.Models
             get { return finishDate; }
             set
             {
-                if (finishDate == value)
+                bool success = DateTime.TryParse(value, out check);
+                if (success)
                 {
-                    return;
+                    if (finishDate == value)
+                    {
+                        return;
+                    }
+                    finishDate = value;
+                    OnPropertyChanged("FinishDate");
                 }
-                finishDate = value;
-                OnPropertyChanged("FinishDate");
+                
             }
         }
 
