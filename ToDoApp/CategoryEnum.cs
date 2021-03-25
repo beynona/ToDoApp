@@ -7,5 +7,5 @@ using static ToDoApp.Models.ToDoModels;
 
 namespace ToDoApp
 {
-    public enum CategoryEnum { None, New, Processing, Shipped, Received };
+    public enum CategoryEnum { None, New, Processing, Done };
 }

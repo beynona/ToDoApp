@@ -17,6 +17,7 @@
     <Grid>
         <Menu Height="25" VerticalAlignment="Top" FontSize="16" Margin="0,0,0,0">
             <MenuItem Header="File">
+                <MenuItem Header="Settings" Click="MenuItem_Click_1"></MenuItem>
                 <MenuItem Header="Close" Click="MenuItem_Click"></MenuItem>
             </MenuItem>
             <MenuItem Header="Formated">

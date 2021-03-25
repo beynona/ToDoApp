@@ -87,5 +87,11 @@ namespace ToDoApp
         {
             this.Close();
         }
+
+        private void MenuItem_Click_1(object sender, RoutedEventArgs e)
+        {
+            Settings settings = new Settings("Настройки");  // Модальное окно
+            settings.Show();
+        }
     }
 }
